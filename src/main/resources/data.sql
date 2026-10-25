@@ -22,10 +22,6 @@ insert into reservation (reservation_code, starts_at, party_size, status, deposi
     ('RES-2026-004', '2026-10-24 20:00:00', 3, 'NO_SHOW',    0.00,   null),
     ('RES-2026-005', '2026-10-18 17:00:00', 2, 'COMPLETED',  0.00,   null);
 
-insert into user_account (email, display_name, role, created_at) values
-('szymon.romanowski@example.com', 'Szymon', 'USER', current_timestamp),
-('jakub.tchorzewski@example.com', 'Kuba', 'USER', current_timestamp),
-('olgierd.owczarczak@example.com', 'Olgierd', 'USER', current_timestamp);
 
 -- ===== LAB 02 · dining_table =====
 insert into dining_table (table_number, seats, zone, active, description) values

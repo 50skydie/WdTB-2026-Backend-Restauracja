@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>pl.wsb</groupId>
-    <artifactId>wdtb-2026-backend</artifactId>
+    <artifactId>wdtb-2026-backend-restauracja</artifactId>
     <!-- LAB 01: wpisz numery indeksów osób z zespołu, np. 1.0.0-123456-123457-123458 (reguła R1.05) -->
     <version>1.0.0-112959-113026-82021</version>
     <name>WdTB-2026-Backend</name>

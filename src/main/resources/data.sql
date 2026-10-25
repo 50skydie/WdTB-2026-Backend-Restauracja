@@ -13,3 +13,10 @@ insert into user_account (email, display_name, role, created_at) values
 -- LAB 01: Wasze konta (zmieńcie na swoje dane, rola USER)
 -- insert into user_account (email, display_name, role, created_at) values
 --     ('imie.nazwisko@student.merito.pl', 'Imię', 'USER', current_timestamp);
+
+-- ===== LAB 02 · customer =====
+insert into customer (first_name, last_name, registered_on, loyalty_points, phone, email) values
+('Anna',  'Kowalska',    '2026-09-14', 120, '600100200', 'anna.kowalska@example.com'),
+('Piotr', 'Nowak',       '2026-10-02',   0, '601222333', null),
+('Ewa',   'Wiśniewska',  '2026-10-11',  45, '602444555', 'ewa.w@example.com'),
+('Tomasz','Zieliński',   '2026-10-20',  10, '603666777', 'tomasz.z@example.com');

@@ -10,12 +10,12 @@ insert into user_account (email, display_name, role, created_at) values
                                                                      ('jakub.tchorzewski@example.com', 'Kuba', 'USER', current_timestamp),
                                                                      ('olgierd.owczarczak@example.com', 'Olgierd', 'USER', current_timestamp);
 
--- ===== LAB 02 · customer =====
-insert into customer (first_name, last_name, registered_on, loyalty_points, phone, email) values
-                                                                                              ('Anna',  'Kowalska',    '2026-09-14', 120, '600100200', 'anna.kowalska@example.com'),
-                                                                                              ('Piotr', 'Nowak',       '2026-10-02',   0, '601222333', null),
-                                                                                              ('Ewa',   'Wiśniewska',  '2026-10-11',  45, '602444555', 'ewa.w@example.com'),
-                                                                                              ('Tomasz','Zieliński',   '2026-10-20',  10, '603666777', 'tomasz.z@example.com');
+-- ===== LAB 02/03 · customer =====
+insert into customer (first_name, last_name, registered_on, loyalty_points, phone, email, user_account_id) values
+                                                                                                               ('Anna',  'Kowalska',    '2026-09-14', 120, '600100200', 'anna.kowalska@example.com', 5),
+                                                                                                               ('Piotr', 'Nowak',       '2026-10-02',   0, '601222333', null, 6),
+                                                                                                               ('Ewa',   'Wiśniewska',  '2026-10-11',  45, '602444555', 'ewa.w@example.com', 7),
+                                                                                                               ('Tomasz','Zieliński',   '2026-10-20',  10, '603666777', 'tomasz.z@example.com', null);
 
 -- ===== LAB 02 · dining_table =====
 insert into dining_table (table_number, seats, zone, active, description) values
@@ -26,10 +26,21 @@ insert into dining_table (table_number, seats, zone, active, description) values
                                                                               (5, 6, 'TERRACE',      false, 'Sezonowo nieczynny');
 
 -- ===== LAB 02/03 · reservation =====
--- Zostawiamy TYLKO jeden klucz obcy (customer_id), zgodny z relacją w encji
-insert into reservation (reservation_code, starts_at, party_size, status, deposit, notes, customer_id) values
-                                                                                                           ('RES-2026-001', '2026-11-07 18:00:00', 2, 'CONFIRMED',  0.00,   'Rocznica, prośba o stolik przy oknie', 1),
-                                                                                                           ('RES-2026-002', '2026-11-07 19:30:00', 4, 'PENDING',    50.00,  null, 2),
-                                                                                                           ('RES-2026-003', '2026-11-08 13:00:00', 8, 'CONFIRMED', 200.00, 'Urodziny, tort własny', 3),
-                                                                                                           ('RES-2026-004', '2026-10-24 20:00:00', 3, 'NO_SHOW',    0.00,   null, 4),
-                                                                                                           ('RES-2026-005', '2026-10-18 17:00:00', 2, 'COMPLETED',  0.00,   null, 1);
+insert into reservation (reservation_code, starts_at, party_size, status, deposit, notes, customer_id, dining_table_id) values
+                                                                                                                            ('RES-2026-001', '2026-11-07 18:00:00', 2, 'CONFIRMED',  0.00,   'Rocznica, prośba o stolik przy oknie', 1, 1),
+                                                                                                                            ('RES-2026-002', '2026-11-07 19:30:00', 4, 'PENDING',    50.00,  null, 2, 2),
+                                                                                                                            ('RES-2026-003', '2026-11-08 13:00:00', 8, 'CONFIRMED', 200.00, 'Urodziny, tort własny', 3, 4),
+                                                                                                                            ('RES-2026-004', '2026-10-24 20:00:00', 3, 'NO_SHOW',    0.00,   null, 4, 3),
+                                                                                                                            ('RES-2026-005', '2026-10-18 17:00:00', 2, 'COMPLETED',  0.00,   null, 1, 1);
+
+-- ===== LAB 03 · menu_item =====
+insert into menu_item (name, price, category, is_available) values
+                                                                ('Stek z polędwicy', 120.00, 'Danie główne', true),
+                                                                ('Tatar wołowy', 45.00, 'Przystawka', true),
+                                                                ('Sernik', 25.00, 'Deser', true);
+
+-- ===== LAB 03 · reservation_item =====
+insert into reservation_item (reservation_id, menu_item_id, quantity, notes) values
+                                                                                 (1, 1, 2, 'Krwiste (medium rare)'),
+                                                                                 (1, 3, 1, 'Ze świeczką'),
+                                                                                 (3, 2, 4, null);

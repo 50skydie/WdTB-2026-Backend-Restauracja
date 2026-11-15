@@ -34,12 +34,13 @@ public class Customer {
     protected Customer() {
     }
 
-    public Customer(String firstName, String lastName, LocalDate registeredOn, Integer loyaltyPoints, ContactDetails contact) {
+    public Customer(String firstName, String lastName, LocalDate registeredOn, Integer loyaltyPoints, ContactDetails contact, UserAccount account) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.registeredOn = registeredOn;
         this.loyaltyPoints = loyaltyPoints;
         this.contact = contact;
+        this.account = account;
     }
 
     public Long getId() { return id; }
@@ -48,4 +49,15 @@ public class Customer {
     public LocalDate getRegisteredOn() { return registeredOn; }
     public Integer getLoyaltyPoints() { return loyaltyPoints; }
     public ContactDetails getContact() { return contact; }
+    public UserAccount getAccount() { return account; }
+    public List<Reservation> getReservations() { return reservations; }
+
+
+    @OneToOne
+    @JoinColumn(name = "user_account_id")
+    private UserAccount account;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Reservation> reservations = new ArrayList<>();
+
 }

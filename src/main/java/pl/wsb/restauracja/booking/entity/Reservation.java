@@ -38,7 +38,7 @@ public class Reservation {
     }
 
     public Reservation(String reservationCode, LocalDateTime startsAt, Integer partySize,
-                       ReservationStatus status, BigDecimal deposit, String notes, Customer customer) {
+                       ReservationStatus status, BigDecimal deposit, String notes, Customer customer, DiningTable diningTable) {
         this.reservationCode = reservationCode;
         this.startsAt = startsAt;
         this.partySize = partySize;
@@ -46,6 +46,7 @@ public class Reservation {
         this.deposit = deposit;
         this.notes = notes;
         this.customer = customer;
+        this.diningTable = diningTable;
     }
 
     public Long getId() { return id; }
@@ -56,9 +57,15 @@ public class Reservation {
     public BigDecimal getDeposit() { return deposit; }
     public String getNotes() { return notes; }
     public Customer getCustomer() {return customer; }
+    public DiningTable getDiningTable() {return diningTable; }
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "dining_table_id", nullable = false)
+    private DiningTable diningTable;
+
 }

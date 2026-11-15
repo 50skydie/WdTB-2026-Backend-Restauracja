@@ -11,11 +11,11 @@ public class ReservationItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false) // CELOWY BRAK LAZY
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "reservation_id", nullable = false)
     private Reservation reservation;
 
-    @ManyToOne(optional = false) // CELOWY BRAK LAZY
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "menu_item_id", nullable = false)
     private MenuItem menuItem;
 
@@ -39,4 +39,6 @@ public class ReservationItem {
     public MenuItem getMenuItem() { return menuItem; }
     public Integer getQuantity() { return quantity; }
     public String getNotes() { return notes; }
+
+
 }

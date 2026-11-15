@@ -60,11 +60,11 @@ public class Reservation {
     public DiningTable getDiningTable() {return diningTable; }
 
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "dining_table_id", nullable = false)
     private DiningTable diningTable;
 

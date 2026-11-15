@@ -1,8 +1,12 @@
 package pl.wsb.restauracja.customer.entity;
 
 import jakarta.persistence.*;
+import pl.wsb.restauracja.account.domain.UserAccount;
+import pl.wsb.restauracja.booking.entity.Reservation;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "customer")

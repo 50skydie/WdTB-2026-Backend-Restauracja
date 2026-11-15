@@ -1,6 +1,8 @@
 package pl.wsb.restauracja.booking.entity;
 
 import jakarta.persistence.*;
+import pl.wsb.restauracja.customer.entity.Customer;
+import pl.wsb.restauracja.seating.entity.DiningTable;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -36,13 +38,14 @@ public class Reservation {
     }
 
     public Reservation(String reservationCode, LocalDateTime startsAt, Integer partySize,
-                       ReservationStatus status, BigDecimal deposit, String notes) {
+                       ReservationStatus status, BigDecimal deposit, String notes, Customer customer) {
         this.reservationCode = reservationCode;
         this.startsAt = startsAt;
         this.partySize = partySize;
         this.status = status;
         this.deposit = deposit;
         this.notes = notes;
+        this.customer = customer;
     }
 
     public Long getId() { return id; }
@@ -52,4 +55,10 @@ public class Reservation {
     public ReservationStatus getStatus() { return status; }
     public BigDecimal getDeposit() { return deposit; }
     public String getNotes() { return notes; }
+    public Customer getCustomer() {return customer; }
+
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
 }
